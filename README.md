@@ -1,0 +1,2 @@
+# minio
+Subutai Minio Blueprint
