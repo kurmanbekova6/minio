@@ -1,6 +1,6 @@
 {
     "name": "${environmentName}",
-    "description": "Minio Server",
+    "description": "Minio server quick start for single peer",
     "version": "0.0.1",
     "author": "https://github.com/neilspink",
     "containers": [
