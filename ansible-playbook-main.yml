@@ -1,0 +1,49 @@
+---
+
+- hosts: all
+  gather_facts: false
+  remote_user: root
+  tasks: 
+
+    - name: Update
+      raw: apt-get -y --allow-unauthenticated update || true
+
+    - name: Ensure python is available
+      raw: test -e /usr/bin/python || apt install -y --allow-unauthenticated python-minimal
+
+    - name: Ensure python-apt is available
+      raw: test -d /usr/share/python-apt || apt install -y --allow-unauthenticated python-apt
+
+    - name: Upgrade
+      raw: apt-get -y --allow-unauthenticated upgrade
+
+- hosts: minio
+  remote_user: root
+  tasks: 
+
+    - name: Install screen
+      apt:
+        name: screen
+        state: present
+        allow_unauthenticated: yes
+
+    - name: Create /usr/local/minecraft
+      file:
+        path: /usr/local/minio
+        recurse: yes
+        state: directory
+
+    - name: Download minio server
+      get_url:
+        url: https://dl.minio.io/server/minio/release/linux-amd64/minio
+        dest: /usr/local/minio/minio
+
+    - name: Install rc.local
+      template:
+        src: files/rc.local
+        dest: /etc/rc.local
+        mode: 755
+
+    - name: Finally run rc.local
+      command: /etc/rc.local
+      

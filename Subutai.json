@@ -1,0 +1,82 @@
+{
+    "name": "${environmentName}",
+    "description": "Minio Server",
+    "version": "0.0.1",
+    "author": "https://github.com/neilspink",
+    "containers": [
+        {
+            "hostname": "minio",
+            "template": "debian-stretch",
+            "peer-criteria": "NOD-GROUP",
+            "size": "${containerSize}",
+            "port-mapping": [
+                {
+                    "protocol": "tcp",
+                    "domain": "${domain}",
+                    "internal-port": "9000",
+                    "external-port": "${port}"
+                }
+            ]
+        }
+    ],
+    "peer-criteria": [
+        {
+            "name": "NOD-GROUP",
+            "max-price": "25"
+        }
+    ],
+    "ansible-configuration": {
+        "source-url": "https://github.com/neilspink/minio/archive/master.zip",
+        "ansible-playbook": "all.json",
+        "extra-vars": [
+            {
+                "key": "access_key",
+                "value": "${accessKey}"
+            }, 
+            {
+                "key": "secret_key",
+                "value": "${secretKey}"
+            }
+        ],
+        "groups": [
+            {
+                "name": "minio",
+                "hostnames": [
+                    "minio"
+                ]
+            }
+        ]
+    },
+    "user-variables": {
+        "accessKey": {
+            "description": "Access key string of 5 to 20 characters in length.",
+            "type": "string",
+            "default": "admin",
+            "validation": "[a-zA-Z0-9]{5,20}"
+        },
+        "secretKey": {
+            "description": "Secret key string of 8 to 40 characters in length.",
+            "type": "string",
+            "default": "secret",
+            "validation": "[a-zA-Z0-9]{8,40}"
+        },
+        "domain": {
+            "description": "Enter the application domain name",
+            "type": "domain",
+            "default": "change.the.domain",
+            "validation": "[a-zA-Z0-9]+"
+        },
+	"port": {
+            "description": "Enter port number (default is 25565 but that might not be available)",
+            "type": "string",
+            "default": "25565",
+            "validation": "[0-9]+"
+        },        
+        "containerSize": {
+            "description": "Container Size",
+            "type": "enum",
+            "default": "TINY",
+            "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
+        }
+    }
+}
