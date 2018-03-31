@@ -39,6 +39,9 @@
         dest: /usr/local/minio/minio
         validate_certs: no
 
+    - name: Make server executable by chmod "+x"
+      file: dest=/usr/local/minio/minio mode=a+x
+
     - name: Install rc.local
       template:
         src: files/rc.local
