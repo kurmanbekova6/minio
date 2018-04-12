@@ -27,7 +27,7 @@
         state: present
         allow_unauthenticated: yes
 
-    - name: Create /usr/local/minecraft
+    - name: Create /usr/local/minio
       file:
         path: /usr/local/minio
         recurse: yes
