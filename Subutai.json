@@ -28,7 +28,7 @@
     "peer-layout": [
        {
             "name": "minio-peers",
-            "peer-count": "2",
+            "peer-count": "2"
        }
     ],
     "ansible-configuration": {
