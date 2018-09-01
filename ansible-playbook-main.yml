@@ -8,18 +8,15 @@
     - name: Update
       raw: apt-get -y --allow-unauthenticated update || true
 
-    - name: Ensure python is available
-      raw: test -e /usr/bin/python || apt install -y --allow-unauthenticated python-minimal
-
-    - name: Ensure python-apt is available
-      raw: test -d /usr/share/python-apt || apt install -y --allow-unauthenticated python-apt
-
     - name: Upgrade
       raw: apt-get -y --allow-unauthenticated upgrade
 
 - hosts: minio
   remote_user: root
   tasks: 
+
+    - name: exec shell
+      shell: echo "{{ansible_ssh_host}}" >> /tmp/hostip.log
 
     - name: Install screen
       apt:

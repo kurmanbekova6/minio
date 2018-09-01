@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
-    "description": "Minio server quick start for single peer",
-    "version": "0.0.1",
+    "description": "Minio server quick start for two peers",
+    "version": "0.0.2",
     "author": "https://github.com/neilspink",
     "containers": [
         {
@@ -24,6 +24,12 @@
             "name": "NOD-GROUP",
             "max-price": "25"
         }
+    ],
+    "peer-layout": [
+       {
+            "name": "minio-peers",
+            "peer-count": "2",
+       }
     ],
     "ansible-configuration": {
         "source-url": "https://github.com/neilspink/minio/archive/master.zip",
