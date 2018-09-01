@@ -9,6 +9,7 @@
             "template": "debian-stretch",
             "peer-criteria": "NOD-GROUP",
             "size": "${containerSize}",
+   	    "peer-layout": "minio-peers",
             "port-mapping": [
                 {
                     "protocol": "tcp",
@@ -25,10 +26,11 @@
             "max-price": "25"
         }
     ],
-    "peer-layout": [
+    "peer-layouts": [
        {
             "name": "minio-peers",
-            "peer-count": "2"
+            "peer-count": "2",
+	    "container-per-peer": "1"
        }
     ],
     "ansible-configuration": {
