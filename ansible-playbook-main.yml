@@ -1,7 +1,7 @@
 ---
 
 - hosts: all
-  gather_facts: false
+  gather_facts: true
   remote_user: root
   tasks: 
 
@@ -13,38 +13,14 @@
 
 - hosts: minio
   remote_user: root
-  tasks: 
-
-    - name: exec shell
-      shell: echo "{{ansible_ssh_host}}" >> /tmp/hostip.log
-
-    - name: Install screen
-      apt:
-        name: screen
-        state: present
-        allow_unauthenticated: yes
-
-    - name: Create /usr/local/minio
-      file:
-        path: /usr/local/minio
-        recurse: yes
-        state: directory
-
-    - name: Download minio server
-      get_url:
-        url: https://dl.minio.io/server/minio/release/linux-amd64/minio
-        dest: /usr/local/minio/minio
-        validate_certs: no
-
-    - name: Make server executable by chmod "+x"
-      file: dest=/usr/local/minio/minio mode=a+x
-
-    - name: Install rc.local
-      template:
-        src: files/rc.local
-        dest: /etc/rc.local
-        mode: 755
-
-    - name: Finally run rc.local
-      command: /etc/rc.local
+  roles:
+    - atosatto.minio
+  vars:
+    minio_server_datadirs: [ "/minio-data" ]
+    minio_server_make_datadirs: true
+    minio_access_key: "{{ access_key }}"
+    minio_secret_key: "{{ secret_key }}"
+    minio_server_cluster_nodes: 
+      - 'http://172.28.4.3:9000'
+      - 'http://172.28.4.5:9000'
       
