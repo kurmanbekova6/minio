@@ -4,7 +4,7 @@
 
   tasks:
     - local_action:
-        command ansible-galaxy install -r requirements.yml
+        command ansible-galaxy install atosatto.minio
 
 - hosts: all
   gather_facts: true
@@ -36,8 +36,8 @@
   vars:
     minio_server_datadirs: [ "/minio-data" ]
     minio_server_make_datadirs: true
-    minio_access_key: "{{ access_key }}"
-    minio_secret_key: "{{ secret_key }}"
+    minio_access_key: "{{ accessKey }}"
+    minio_secret_key: "{{ secretKey }}"
     minio_server_cluster_nodes:
       - 'http://172.28.4.3:9000'
       - 'http://172.28.4.5:9000'
