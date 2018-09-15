@@ -2,9 +2,9 @@
 
 - hosts: localhost
 
-  tasks:
-    - local_action:
-        command ansible-galaxy install atosatto.minio
+  pre_tasks:
+    - name: Prepare automation
+      raw: ansible-galaxy install atosatto.minio
 
 - hosts: all
   gather_facts: true
