@@ -1,15 +1,33 @@
 ---
 
+- hosts: localhost
+
+  tasks:
+    - local_action:
+        command ansible-galaxy install -r requirements.yml
+
 - hosts: all
   gather_facts: true
   remote_user: root
-  tasks: 
+  tasks:
 
     - name: Update
       raw: apt-get -y --allow-unauthenticated update || true
 
     - name: Upgrade
       raw: apt-get -y --allow-unauthenticated upgrade
+
+    - name: Ensure python is available
+      raw: test -e /usr/bin/python || apt install -y --allow-unauthenticated python-minimal
+
+    - name: Ensure python-apt is available
+      raw: test -d /usr/share/python-apt || apt install -y --allow-unauthenticated python-apt
+
+    - name: Ensure python-pip is available
+      raw: test -d /usr/share/python-pip || apt install -y --allow-unauthenticated python-pip
+
+    - name: Ensure python-pip is available
+      raw: pip install urllib3[secure]
 
 - hosts: minio
   remote_user: root
@@ -20,7 +38,6 @@
     minio_server_make_datadirs: true
     minio_access_key: "{{ access_key }}"
     minio_secret_key: "{{ secret_key }}"
-    minio_server_cluster_nodes: 
+    minio_server_cluster_nodes:
       - 'http://172.28.4.3:9000'
       - 'http://172.28.4.5:9000'
-      
