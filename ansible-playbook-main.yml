@@ -1,11 +1,5 @@
 ---
 
-- hosts: localhost
-
-  pre_tasks:
-    - name: Prepare automation
-      raw: ansible-galaxy install atosatto.minio
-
 - hosts: all
   gather_facts: true
   remote_user: root
