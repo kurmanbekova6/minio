@@ -7,5 +7,5 @@
       raw: ansible-galaxy -p roles -r requirements.yml install
 
     - name: Run install
-      raw: ansible-playbook -i /etc/ansible/minio-master.hosts  ansible-playbook-main.yml 
+      raw: ansible-playbook -i /etc/ansible/minio-master.hosts  ansible-playbook-main.yml --extra-vars "access_key={{ access_key }} secret_key={{ secret_key }}"
 
