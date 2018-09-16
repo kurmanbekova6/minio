@@ -1,5 +1,0 @@
-#!/bin/bash
-#
-# Start Minio
-#
-screen -dmS minio bash -c "cd /usr/local/minio && export MINIO_ACCESS_KEY={{ access_key }} && export MINIO_SECRET_KEY={{ secret_key }} && ./minio server /data"
