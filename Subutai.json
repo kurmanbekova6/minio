@@ -30,7 +30,7 @@
        {
             "name": "minio-peers",
             "peer-count": "2",
-	    "container-per-peer": "1"
+	    "container-per-peer": "2"
        }
     ],
     "ansible-configuration": {
