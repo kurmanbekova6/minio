@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+
+  tasks:
+    - name: Prepare automation
+      raw: ansible-galaxy -p roles -r requirements.yml install
+
+  tasks:
+    - name: Run install
+      raw: ansible-playbook -i /etc/ansible/minio-master.hosts  ansible-playbook-main.yml 
+
