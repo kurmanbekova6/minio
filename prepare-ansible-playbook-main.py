@@ -11,10 +11,9 @@ s = [re.findall('ansible_ssh_host=.*',line)
         for line in open('/etc/ansible/minio-master.hosts')]
 if s:
         with open("ansible-playbook-main.yml", "a") as myfile:
-                myfile.write("\n")
                 for i in s:
                         if len(i) > 0:
                                 ip = i[0].replace("ansible_ssh_host=", "")
-                                myfile.write("      - '" + ip + ":" + sys.argv[0] + "/minio-data'")
+                                myfile.write("      - 'http://" + ip + ":" + sys.argv[1] + "/minio-data'")
                                 myfile.write("\n")
                 myfile.close()
