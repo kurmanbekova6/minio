@@ -4,11 +4,11 @@ Minio is an object storage server. It is compatible with Amazon S3 cloud storage
 
 ## Server Access via SSH
 
-The server and your data can be found in the folder /usr/local/minio/
+The server and your data can be found in the folder /minio-data
 
-To access the minio at console, ssh into the container and run screen -r
+To access the minio at console, ssh into the container. It is running as a service. You can check it by running
 
-Screen can be detached by pressing CTRL-a + d
+systemctl status minio.service 
 
 ## Deployment
 

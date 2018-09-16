@@ -5,3 +5,6 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Ability to deploy to one peer
 
+## 0.0.2
+### Added
+- Now run on 2 peers and uses ansible galaxy role to setup minio
