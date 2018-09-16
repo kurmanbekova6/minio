@@ -14,7 +14,7 @@
                 {
                     "protocol": "tcp",
                     "domain": "${domain}",
-                    "internal-port": "9000",
+                    "internal-port": "${port}",
                     "external-port": "${port}"
                 }
             ]
@@ -44,6 +44,10 @@
             {
                 "key": "secret_key",
                 "value": "${secretKey}"
+            }, 
+            {
+                "key": "server_port",
+                "value": "${port}"
             }
         ],
         "groups": [
@@ -75,13 +79,13 @@
             "validation": "[a-zA-Z0-9]+"
         },
 	"port": {
-            "description": "Enter port number (default is 25565 but that might not be available)",
+            "description": "Enter port number (default is 9000 but that might not be available)",
             "type": "string",
-            "default": "25565",
+            "default": "9000",
             "validation": "[0-9]+"
         },        
         "containerSize": {
-            "description": "Container Size",
+            "description": "Container size (you'll have 2 on each peer)",
             "type": "enum",
             "default": "TINY",
             "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
