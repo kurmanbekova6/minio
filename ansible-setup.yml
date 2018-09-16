@@ -1,11 +1,37 @@
 ---
 
+- hosts: all
+  gather_facts: true
+  remote_user: root
+  tasks:
+
+    - name: Update
+      raw: apt-get -y --allow-unauthenticated update || true
+
+    - name: Upgrade
+      raw: apt-get -y --allow-unauthenticated upgrade
+
+    - name: Ensure python is available
+      raw: test -e /usr/bin/python || apt install -y --allow-unauthenticated python-minimal
+
+    - name: Ensure python-apt is available
+      raw: test -d /usr/share/python-apt || apt install -y --allow-unauthenticated python-apt
+
+    - name: Ensure python-pip is available
+      raw: test -d /usr/share/python-pip || apt install -y --allow-unauthenticated python-pip
+
+    - name: Ensure python-pip is available
+      raw: pip install urllib3[secure]
+
 - hosts: localhost
 
   tasks:
-    - name: Prepare automation
+    - name: Install ansible galaxy role 
       raw: ansible-galaxy -p roles -r requirements.yml install
 
-    - name: Run install
+    - name: Load list of containers into main playbook
+      raw: python prepare-ansible-playbook-main.py {{ server_port }}
+
+    - name: Run main playbook
       raw: ansible-playbook -i /etc/ansible/minio-master.hosts  ansible-playbook-main.yml --extra-vars "access_key={{ access_key }} secret_key={{ secret_key }} server_port={{ server_port }}"
 

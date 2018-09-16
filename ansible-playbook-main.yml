@@ -1,28 +1,5 @@
 ---
 
-- hosts: all
-  gather_facts: true
-  remote_user: root
-  tasks:
-
-    - name: Update
-      raw: apt-get -y --allow-unauthenticated update || true
-
-    - name: Upgrade
-      raw: apt-get -y --allow-unauthenticated upgrade
-
-    - name: Ensure python is available
-      raw: test -e /usr/bin/python || apt install -y --allow-unauthenticated python-minimal
-
-    - name: Ensure python-apt is available
-      raw: test -d /usr/share/python-apt || apt install -y --allow-unauthenticated python-apt
-
-    - name: Ensure python-pip is available
-      raw: test -d /usr/share/python-pip || apt install -y --allow-unauthenticated python-pip
-
-    - name: Ensure python-pip is available
-      raw: pip install urllib3[secure]
-
 - hosts: minio
   remote_user: root
   roles:
@@ -34,6 +11,4 @@
     minio_access_key: "{{ access_key }}"
     minio_secret_key: "{{ secret_key }}"
     minio_server_cluster_nodes:
-      - 'http://172.31.234.4:9091/minio-data'
-      - 'http://172.28.234.3:9091/minio-data'
 
