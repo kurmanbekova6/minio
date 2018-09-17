@@ -7,13 +7,13 @@
 
 import re
 import sys
-s = [re.findall('ansible_ssh_host=.*',line)
+iplist = [re.findall('ansible_ssh_host=.*',line)
         for line in open('/etc/ansible/minio-master.hosts')]
-if s:
+if iplist:
         with open("ansible-playbook-main.yml", "a") as myfile:
-                for i in s:
-                        if len(i) > 0:
-                                ip = i[0].replace("ansible_ssh_host=", "")
+                for item in iplist:
+                        if len(item) > 0:
+                                ip = item[0].replace("ansible_ssh_host=", "")
                                 myfile.write("      - 'http://" + ip + ":" + sys.argv[1] + "/minio-data'")
                                 myfile.write("\n")
                 myfile.close()

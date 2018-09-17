@@ -20,7 +20,7 @@
     - name: Ensure python-pip is available
       raw: test -d /usr/share/python-pip || apt install -y --allow-unauthenticated python-pip
 
-    - name: Ensure python-pip is available
+    - name: Install util for galaxy ansible which otherwise will fail to validate the SSL certificates
       raw: pip install urllib3[secure]
 
 - hosts: localhost
