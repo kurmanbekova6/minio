@@ -64,7 +64,7 @@
 	    "description": "Minimum setup is 2 peers (your data safe as long as n/2 or more containers are online). ",
 	    "type": "int",
 	    "default": "2",
-	    "validation": "[2-32]"
+	    "validation": "^(3[0-2]|[1-2][0-9]|[1-9])$"
 	},
 
 	"numberOfContainers": {
