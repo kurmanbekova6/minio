@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
     "description": "Minio server quick start for two peers",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "author": "https://github.com/neilspink",
     "containers": [
         {
@@ -29,8 +29,8 @@
     "peer-layouts": [
        {
             "name": "minio-peers",
-            "peer-count": "2",
-	    "container-per-peer": "2"
+	    "peer-count": "${numberOfPeers}",
+            "container-per-peer": "${numberOfContainers}"
        }
     ],
     "ansible-configuration": {
@@ -59,7 +59,20 @@
             }
         ]
     },
-    "user-variables": {
+	"user-variables": {
+	    "numberOfPeers": {
+	    "description": "Minimum setup is 2 peers (your data safe as long as n/2 or more containers are online). ",
+	    "type": "int",
+	    "default": "2",
+	    "validation": "[2-32]"
+	},
+
+	"numberOfContainers": {
+	    "description": "You need an even number of containers (maximum 32 containers in your environment).",
+	    "type": "int",
+	    "default": "2",
+	    "validation": "[1-2]"
+	}
         "accessKey": {
             "description": "Access key string of 5 to 20 characters in length.",
             "type": "string",
@@ -85,7 +98,7 @@
             "validation": "[0-9]+"
         },        
         "containerSize": {
-            "description": "Container size (you'll have 2 on each peer)",
+            "description": "Container size",
             "type": "enum",
             "default": "TINY",
             "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
