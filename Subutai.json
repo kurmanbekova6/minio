@@ -72,7 +72,7 @@
 	    "type": "int",
 	    "default": "2",
 	    "validation": "[1-2]"
-	}
+	},
         "accessKey": {
             "description": "Access key string of 5 to 20 characters in length.",
             "type": "string",
