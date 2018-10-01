@@ -12,7 +12,7 @@
    	    "peer-layout": "minio-peers",
             "port-mapping": [
                 {
-                    "protocol": "tcp",
+                    "protocol": "http",
                     "domain": "${domain}",
                     "internal-port": "${port}",
                     "external-port": "${port}"
