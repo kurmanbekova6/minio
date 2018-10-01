@@ -18,4 +18,4 @@ https://github.com/subutai-blueprints/hackathon/wiki/Using-Subutai-Blueprints
 
 ## Overview
 
-![Blueprint Overview](https://github.com/neilspink/minio/docs/Blueprint-Overview.jpeg)
+![Blueprint Overview](https://raw.githubusercontent.com/neilspink/minio/master/docs/Blueprint-Overview.jpeg)
