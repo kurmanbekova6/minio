@@ -15,3 +15,7 @@ systemctl status minio.service
 This is a blue print which is published on Subutai Hub's Bazaar. You can also fork and deploy your own version.
 
 https://github.com/subutai-blueprints/hackathon/wiki/Using-Subutai-Blueprints
+
+## Overview
+
+![Blueprint Overview](https://github.com/neilspink/minio/docs/Blueprint-Overview.jpeg)
