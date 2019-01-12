@@ -6,7 +6,7 @@
     "containers": [
         {
             "hostname": "minio",
-            "template": "minio-base",
+            "template": "minio-base@neilspink",
             "peer-criteria": "NOD-GROUP",
             "size": "${containerSize}",
    	    "peer-layout": "minio-peers",
