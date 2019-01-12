@@ -13,3 +13,6 @@ All notable changes to this project will be documented in this file.
 ### Added
 - You are free to define how many peers & containers. Default is 2x2.
 
+## 0.0.4
+### Changed
+- Using a Python pre-installed container to accelerate environment creation.

@@ -6,7 +6,7 @@
     "containers": [
         {
             "hostname": "minio",
-            "template": "debian-stretch",
+            "template": "minio-base",
             "peer-criteria": "NOD-GROUP",
             "size": "${containerSize}",
    	    "peer-layout": "minio-peers",
